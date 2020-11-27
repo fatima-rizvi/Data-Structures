@@ -1,4 +1,9 @@
 #Import linked list
+#Folder name.file name, thing to import
+# from singly_linked_list.singly_linked_list import LinkedList
+
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]), 'singly_linked_list'))
 from singly_linked_list import LinkedList
 
 """
@@ -46,19 +51,24 @@ implementing a Stack?
 #         del self.storage[0]  #Removes from the start
 #         return removed
 
-#Side note: Alt and up and down arrows to move stuff up and down. Add ctrl to copy and paste
+#Side note: Alt and up and down arrows to move stuff up and down. Add ctrl to those steps to copy and paste
 
 #THIS IS HOW TO DO IT WITH A LINKED LIST
 class Stack:
     def __init__(self): 
-        self.size = 0
-        
+        self.size = 0 #Keep track of the length. You could do this in the linked list class
+        self.storage = LinkedList()        
 
     def __len__(self): 
-        pass
+        return self.size
 
     def push(self, value):
-        pass
+        self.size += 1 #Keep track of the length
+        return self.storage.add_to_head(value) #We've chosen to add/remove from the start
 
     def pop(self):
-        pass
+        if self.size == 0:
+            return
+        self.size -= 1 #Keep track of the length
+        return self.storage.remove_head()
+        

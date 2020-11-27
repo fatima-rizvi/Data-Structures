@@ -34,9 +34,9 @@ class LinkedList:
         self.head.next = old_head #Reassigning the old head to the next of the new one
 
     def remove_head(self):
-        data = self.head.get_value()
         if self.head is None: #There's nothing to remove if the list is empty, which it is if head is empty
-            return data
+            return
+        data = self.head.get_value()
         self.head = self.head.next
         return data
 
