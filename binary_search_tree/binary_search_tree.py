@@ -17,12 +17,30 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        #Imagine there's a root of 10, we're doing recursion (which is where we call the function inside of itself. Crazy loops)
+        #Below this, we're going down the tree and checking the values to see where to place this value
+        if value < self.value: #If it's less, we're going to keep going down the left side. The smaller values are always to the left.
+            if self.left: #Check if this exists
+                self.left.insert(value) #This is the recursion
+            else:
+                self.left = BSTNode(value)
+        else:   #If it's greater than OR EQUAL TO, we go down the right. 
+            if self.right:  #Check if this exists
+                self.right.insert(value) #This is the recursion
+            else:   #If it's equal to, it'll go to here
+                self.right = BSTNode(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+        else:
+            if target > self.left.value:
+                self.right.contains(target) 
+            else:
+                self.left.contains(target)
+        return False
 
     # Return the maximum value found in the tree
     def get_max(self):
@@ -80,6 +98,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+# bst.in_order_dft()
 print("post order")
 bst.post_order_dft()  
