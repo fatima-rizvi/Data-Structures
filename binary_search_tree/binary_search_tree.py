@@ -32,19 +32,54 @@ class BSTNode:
 
     # Return True if the tree contains the value
     # False if it does not
+
+    # Recursion is kinda like a while loop
+    # Recursion should always be moving towards the base case
+    # TK code for contains
     def contains(self, target):
-        if self.value == target:
+        if self.value == target:    # Base case: this should kill the recursion. It's like an exit condition of a while loop.
             return True
-        else:
-            if target > self.left.value:
-                self.right.contains(target) 
+        elif target < self.value:   # Left side of the tree
+            if self.left is None:
+                return False
             else:
-                self.left.contains(target)
-        return False
+                return self.left.contains(target)   # Recursion
+        else:                       # Right side of the tree
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)  # Recursion
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # max_value = None # Can also set it to the first value in the tree, but None accounts for the tree being empty. Can also add that condition later
+        # if max_value < self.value:
+        #     max_value = self.value
+        # The stuff above will not work if we use recursion
+
+        # Recursion version
+        # max_value = self.value                  # Starting at the first value
+        # if max_value is not None:               # If the value is not none, if the value is actually there
+        #     if self.right is None:              # If there is no right value, then this is the max value (since there are larger values to the right)
+        #         return max_value                # Since it has to be the largest, we return it
+        #     else:                               # If there is a value to the right
+        #         return self.right.get_max()     # Recursion: Running the function again since we haven't found the max value
+        # else:                                   # If there's nothing in the tree
+        #     return None                         # Return None
+
+        # While loop version
+        current_node = self                     # Create a variable called current_node and set it equal to self (the current node)
+        if current_node is None:                # If current_node is None, the tree is empty (edge case)
+            return None                         # So we return None and stop the function. If we didn't, the last two lines would break the function
+
+                                                # when current_node.right is none, the while loop will not run again
+        while current_node.right:               # If there is something to the right of the current node (so something larger), the while loop will run
+            current_node = current_node.right   # Set current_node to be the node to the right (the larger node)
+
+        max_value = current_node.value          # Once we've broken out of the while loop, the current_node must be the max. Store its value in max_value
+        return max_value                        # Return the max_value
+
+        # Note: In this case, recursion didn't really save us any time or lines of code. Both are about the same length. Normally recursion is shorter.
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
