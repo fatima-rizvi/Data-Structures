@@ -89,8 +89,17 @@ class BSTNode:
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
+    def in_order_helper(self, node):
+        if node is None:
+            return
+        bst.in_order_helper(node.left)
+        print(node.value)
+        bst.in_order_helper(node.right)
+
     def in_order_print(self):
-        pass
+        # result = []
+        bst.in_order_helper(self)
+        # return result    
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -99,20 +108,43 @@ class BSTNode:
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
+
     def dft_print(self):
         pass
 
     # Stretch Goals -------------------------
     # Note: Research may be required
 
+
     # Print Pre-order recursive DFT
+    def pre_order_helper(self, node):
+        if node is None:
+            return
+        print(node.value)
+        bst.pre_order_helper(node.left)
+        bst.pre_order_helper(node.right)
+
     def pre_order_dft(self):
-        pass
+        # result = []
+        bst.pre_order_helper(self)
+        # return result    
 
+    
     # Print Post-order recursive DFT
-    def post_order_dft(self):
-        pass
+    def post_order_helper(self, node):
+        if node is None:
+            return
+        bst.post_order_helper(node.left)
+        bst.post_order_helper(node.right)
+        print(node.value)
 
+    def post_order_dft(self):
+        # result = []
+        bst.post_order_helper(self)
+        # return result
+
+        
 """
 This code is necessary for testing the `print` methods
 """
