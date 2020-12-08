@@ -1,3 +1,4 @@
+#  This whole file was done at the CS Reset evening session with Ava
 """
 Node class to keep track of
 the data internal to individual nodes

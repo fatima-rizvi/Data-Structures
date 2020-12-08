@@ -1,6 +1,7 @@
 # A singly linked list is kind of shaped like a list, but nothing has an index list. It has a head, which has an attribute pointing to the next item in the list and so on until the end. You can only go forward in this list. Items do not know what came before it, only what comes directly after.
 #They're pretty fast at certain things
 
+# Imports were confusing so we just copy and pasted
 class Node: 
     def __init__(self, value):
         self.value = value
@@ -170,6 +171,7 @@ class BSTNode:
 
         # Note: In this case, recursion didn't really save us any time or lines of code. Both are about the same length. Normally recursion is shorter.
 
+    # Ava
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         if not self:
@@ -183,6 +185,7 @@ class BSTNode:
 
     # Part 2 -----------------------
 
+    # Josh
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     # def in_order_helper(self, node):
@@ -197,6 +200,7 @@ class BSTNode:
     #     bst.in_order_helper(self)
     #     # return result    
 
+    # Ava
     def in_order_print(self):
         if self.left:
             self.left.in_order_print()     #Recursion is your friends :')
@@ -206,7 +210,7 @@ class BSTNode:
 
 
     
-
+    # Mine and Doc's
     # def bft_print(self):
     #     current_level = [self]
     #     while current_level:
@@ -221,7 +225,7 @@ class BSTNode:
     #         current_level = next_level
         
     
-
+    # Ava
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal (iterative, no recursion :'( )
     def bft_print(self):
@@ -239,7 +243,7 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal (iterative, so we'll use a queue and stack)
 
-
+    # Ava
     def dft_print(self):
         s = Stack()
         s.push(self)
@@ -255,7 +259,7 @@ class BSTNode:
     # Stretch Goals -------------------------
     # Note: Research may be required
 
-
+    # Josh
     # Print Pre-order recursive DFT
     # def pre_order_helper(self, node):
     #     if node is None:
@@ -278,7 +282,7 @@ class BSTNode:
             if self.right:
                 self.right.pre_order_dft()
             
-    
+    # Josh
     # Print Post-order recursive DFT
     # def post_order_helper(self, node):
     #     if node is None:
