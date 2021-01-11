@@ -59,7 +59,7 @@ class LinkedList:
         # We'll need to reassign self.head to self.head.next
         if self.head is None: # 3. There's nothing to remove if the list is empty, which it is if head is empty
             return  # 4
-        data = self.head.get_value() # 5. Write this AFTER the line below AND the edge case. The tests want us to return the value we are removing, we'll need to build the get value method into the node class. Show that to the group
+        data = self.head.get_value() # 5. Write this AFTER writing the line below AND the edge case. The tests want us to return the value we are removing, we'll need to build the get value method into the node class. Show that to the group. This needs to be under the edge case, because we can't get the value on a none type. 
         self.head = self.head.next  # 2. Reassign the head pointer to self.next.head, effectively wiping the old head from memory.
         return data # 6
 
@@ -78,7 +78,7 @@ class LinkedList:
         self.tail.next = None   # 11. Get rid of the connection/arrow to the old tail
         return data     # 13. Return the value
 
-
+# Note: When teaching, make sure to print the node or something at some point so you can show what the node's momory location looks like, that way they know what that is if it ever pops up while programming.
 
 
 
