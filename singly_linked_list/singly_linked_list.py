@@ -6,8 +6,8 @@ class Node:
         self.value = value      # Each node in a linked list has a value and a next 
         self.next = None        # This points to the next node in the list
 
-    def get_value(self):        # THIS GETS MADE LATER
-        return self.value       
+    def get_value(self):        # THIS GETS MADE LATER, when we make the remove_head and remove)tail methods
+        return self.value       # This is really simple, we just need to be able to return the value on any node. Honestly, I'm not sure if this was necessary, we might've just been able to return the node.value in those methods buuuuuut this is good practice I guess.
 
 class LinkedList:
     def __init__(self):
@@ -26,29 +26,30 @@ class LinkedList:
 
 
     def add_to_tail(self, value):
-        new_node = Node(value)
-        # If the list is empty/doesn't exist (edge case). How would we know if it's empty? If self.head is None.
-        if self.head is None: #The "is" operator compares the identity of two objects while "==" compares the value of two objects. None has no location in memory, so I don't think we can use == but don't quote me on that.
-            self.head = new_node    # The new node will be the head
-            self.tail = new_node    # And since there is only one node the tail will also point here
-            return #You could use "break" here instead to get out of the if statement (more useful for loops), but it would still continue to the next line so maybe don't. Return will end the function
-        # Since we tracked the tail, we just need to make a node come after the tail (next) and then move the pointer of the tail to the new node
-        self.tail.next = new_node #
-        # Now we need to reassign the tail pointer bc it's currently pointing at the old tail.
-        self.tail = new_node # Could also be assigned to the value of self.tail.next, it's the same thing.
+        new_node = Node(value)  # 1
+        # 6. Edge case: If the list is empty/doesn't exist. Q: How would we know if it's empty? Ans: If self.head is None.
+        if self.head is None: # 7. The "is" operator compares the identity of two objects while "==" compares the value of two objects. None has no location in memory, so I don't think we can use == but don't quote me on that.
+            self.head = new_node    # 8. The new node will be the head
+            self.tail = new_node    # 9. And since there is only one node the tail will also point here
+            return # 10. You could use "break" here instead to get out of the if statement (more useful for loops), but it would still continue to the next line so maybe don't. Return will end the function
+        # 2. Since we tracked the tail, we just need to make a node come after the tail (next) and then move the pointer of the tail to the new node
+        self.tail.next = new_node # 3. Reassign the the next of the tail to the new node
+        # 4. Now we need to reassign the tail pointer bc it's currently pointing at the old tail.
+        self.tail = new_node # 5. Could also be assigned to the value of self.tail.next, it's the same thing.
 
     def add_to_head(self, value):
-        new_node = Node(value)  #Created the new_node
+        new_node = Node(value)  # 1. Created the new_node
         # Edge case of if there is no list. It's easier to go through the the code to solve the majority of cases before we try to solve the edge cases
         if self.head is None:   #Just in case there isn't already a head, meaning the list is empty
             self.head = new_node    # Reassign the pointers just like we did before
             self.tail = new_node    # Reassign
             return                  # End the function here
-        # Slight problem here, a difference compared to adding to tail. If we try to immediately reassign self.head or self.head.next, we lose whatever nodes that we originally there (unlike how self.tail.next was None, self.head has a value). How do we get around this problem? Remember, if a node doesn't have anything pointing at it, it basically no longer exists.
-        # In python, and possibly in computers/programming languages in general, once there is nothing pointing to a memory location, whatever data is at that location virtually ceases to exist and that location is seen as "empty", so the computer can fill it with new data.
-        old_head = self.head    # This way, the old head doesn't disappear and we can link it to the new one
-        self.head = new_node    # Assigning the new_node to the head
-        self.head.next = old_head # Reassigning the old head to the next of the new one
+        # 2. Slight problem here, a difference compared to adding_to_tail. If we try to immediately reassign self.head or self.head.next, we lose whatever nodes that we originally there (unlike how self.tail.next was None, self.head has a value). 
+        # 3. That's because in python, and possibly in computers/programming languages in general, once there is nothing pointing to a memory location, whatever data is at that location virtually ceases to exist and that location is seen as "empty", so the computer can fill it with new data.
+        # 4. So, if a node doesn't have anything pointing at it, it basically no longer exists. How do we get around this problem?
+        old_head = self.head    # 5. Create something to hold the old head. This way, the old head doesn't disappear and we can link it to the new one
+        self.head = new_node    # 6. Assigning the new_node to the head of the linked list
+        self.head.next = old_head # 7. Reassigning the old head to the next of the new one
 
     # For session purposes, pause here and define other necessary methods, but only fill out "pass" in them. Then run the test file with this:
     # python -m singly_linked_list
@@ -62,7 +63,7 @@ class LinkedList:
         self.head = self.head.next  # 2. Reassign the head pointer to self.next.head, effectively wiping the old head from memory.
         return data # 6
 
-    def remove_tail(self): 
+    def remove_tail(self): # AN ERROW WILL GET RETURNED ON THE TESTS FOR THIS, we're pretty sure one of the tests in broken.
         # 1. Funky thing here, we don't have anything pointing to the node before the tail, so how do we find it?
         # 2. We'll need to create loop to find it. Which kind? A while loop.
         data = self.tail.get_value() # 12. We still need to return the value of the removed tail for the tests, so let's grab it
