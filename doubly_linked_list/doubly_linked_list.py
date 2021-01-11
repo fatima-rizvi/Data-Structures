@@ -2,8 +2,9 @@
 Each ListNode holds a reference to its previous node
 as well as its next node in the List.
 """
+# Walk through whatever was pre built
 class ListNode:
-    def __init__(self, value, prev=None, next=None):
+    def __init__(self, value, prev=None, next=None):    # Note: Explain what the defaults mean or how the node looks
         self.prev = prev
         self.value = value
         self.next = next
@@ -17,7 +18,7 @@ class DoublyLinkedList:
     def __init__(self, node=None):
         self.head = node
         self.tail = node
-        self.length = 1 if node is not None else 0
+        self.length = 1 if node is not None else 0  # We could call length anything, it's just avariable that's been created
 
     def __len__(self):
         return self.length
@@ -27,20 +28,22 @@ class DoublyLinkedList:
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly.
     """
-    def add_to_head(self, value):
-        new_node = ListNode(value)
-        old_head = self.head
-        new_node.next = old_head #You only need new_node.next = self.head but this explains what's going on better
+    def add_to_head(self, value):   # 1. Ask, what do we need to do to add to the head?
+        new_node = ListNode(value)  # 2. Create a new node
+        old_head = self.head        # 3. (Optional, but better for understanding) Store the old head node in a variable to keep track of it  
+        new_node.next = old_head # 4. You only need new_node.next = self.head but this explains what's going on better
         
-        if self.head is None: #Since there was nothing in the list before this, this becomes the entire thing
+        # 9. Edge case: What if the list is empty? Does it change what we do? How?
+        if self.head is None: # Since there was nothing in the list before this, this becomes the entire list
             self.head = new_node
             self.tail = new_node
             self.length = 1
             return
 
-        old_head.prev = new_node # self.head.prev = new_node (same thing)
-        self.head = new_node #Moves our pointer (head) to the "front". Head is just a variable we use for our computer to point to where we want to start.
-        self.length += 1 #increase length
+        old_head.prev = new_node # 5. self.head.prev = new_node (same thing). By giving the old head a prev, it's no longer the head.
+        # 6. BUT we still need to move the self.head pointer
+        self.head = new_node # 7. Moves our pointer (head) to the "front". Head is just a variable we use for our computer to point to where we want to start.
+        self.length += 1 # 8. Q: What do we need to do for our len function to work properly? A: increase length
         
     """
     Removes the List's current head node, making the
@@ -48,23 +51,25 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_head(self):
-        if self.length == 0:
-            return
+        # 8. Q: What are the possible edge cases? A: Where list is empty or where there is only one item.
+        if self.length == 0:    # 9
+            return              # 10. Return by itself returns a None value
 
-        value = self.head.value #self.head returns the location of the node, not just the value
+        value = self.head.value # 1. Let's grab the value of the node to return later. self.head returns the location of the node, not the value
         
-        if self.length == 1:
+        if self.length == 1:        # 11
             self.head = None #The list is empty now
             self.tail = None #The list is empty now
             self.length = 0
             return value
 
-        new_head = self.head.next
-        self.head = new_head
-        self.head.prev = None #Get rid of the pointer to the old head
-        self.length -= 1 #decrease the length
+        # 2. Q: How do we want to go about removing the head?
+        new_head = self.head.next   # 3. Grab the node that we'll want to be the new head and store it (to make things easier in our head)
+        self.head = new_head     # 4. Set the head pointer to the new head. It's .prev still points to the old head
+        self.head.prev = None # 5. Get rid of the pointer to the old head, so that nothing is still pointing at the old head
+        self.length -= 1 # 6. Decrease the length
 
-        return value
+        return value    # 7. Return the value we grabbed for testing purposes
             
     """
     Wraps the given value in a ListNode and inserts it 
