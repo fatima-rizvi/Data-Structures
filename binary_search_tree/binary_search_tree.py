@@ -178,9 +178,17 @@ class BSTNode:
             return
         fn(self.value)
         if self.left:
-            self.for_each(self.left, fn)    #Recursion
+            self.left.for_each(fn)    #Recursion
         if self.right:
-            self.for_each(self.right, fn)   #Recursion
+            self.right.for_each(fn)   #Recursion
+    # def for_each(self, fn):
+    #     if not self:
+    #         return
+    #     fn(self.value)
+    #     if self.left:
+    #         self.for_each(self.left, fn)    #Recursion
+    #     if self.right:
+    #         self.for_each(self.right, fn)   #Recursion
         
 
     # Part 2 -----------------------
