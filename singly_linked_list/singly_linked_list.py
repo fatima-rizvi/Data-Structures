@@ -52,23 +52,30 @@ class LinkedList:
 
     # For session purposes, pause here and define other necessary methods, but only fill out "pass" in them. Then run the test file with this:
     # python -m singly_linked_list
+    # Note, these tests aren't super well written out for us to read, but for the most part they let us know if we built our functions correctly. The ones on code signal are nicer
 
-    def remove_head(self):
-        if self.head is None: #There's nothing to remove if the list is empty, which it is if head is empty
-            return
-        data = self.head.get_value()
-        self.head = self.head.next
-        return data
+    def remove_head(self):  # 1. Ask if we need to pass anything in, then ask how they would go about removing the head. 
+        # We'll need to reassign self.head to self.head.next
+        if self.head is None: # 3. There's nothing to remove if the list is empty, which it is if head is empty
+            return  # 4
+        data = self.head.get_value() # 5. Write this AFTER the line below AND the edge case. The tests want us to return the value we are removing, we'll need to build the get value method into the node class. Show that to the group
+        self.head = self.head.next  # 2. Reassign the head pointer to self.next.head, effectively wiping the old head from memory.
+        return data # 6
 
-    def remove_tail(self):
-        data = self.tail.get_value()
-        cursor = self.head  #Can also be pointer. Start at the head
-        # Using cursor.next.next so that when the next item of our next item is none, we know that our item is the item before the tail
-        while cursor.next.next is not None:   #We don't know how long the list is, hence a while loop
-            cursor = cursor.next    #Move the cursor to the next one
-        self.tail = cursor   #Set linked list's tail to the cursor
-        self.tail.next = None   #Get rid of the connection/arrow to the old tail
-        return data
+    def remove_tail(self): 
+        # 1. Funky thing here, we don't have anything pointing to the node before the tail, so how do we find it?
+        # 2. We'll need to create loop to find it. Which kind? A while loop.
+        data = self.tail.get_value() # 12. We still need to return the value of the removed tail for the tests, so let's grab it
+        # 3. We also need a cursor/pointer to keep track of the node we're on
+        cursor = self.head  # 4. Can also be pointer. Start at the head
+        # 6. Using cursor.next.next so that when the next item of our next item is none (use diagram), we know that our item is the item before the tail
+        while cursor.next.next is not None:   # 5. We don't know how long the list is, hence a while loop
+            cursor = cursor.next    # 7. What do we do here if the cursor is not on the node we want (second to last)? Move the cursor to the next one. This loop will stop runnign once we reach the second to last node
+        # 8. What do we do once we've reach the second to last node and exited the loop? What is our goal with our current node, our cursor?
+        # 9. We want our current node to become the new tail, and we need to erase the old tail by getting rid of anything pointing to it. How?
+        self.tail = cursor   # 10. We set linked list's tail to the cursor
+        self.tail.next = None   # 11. Get rid of the connection/arrow to the old tail
+        return data     # 13. Return the value
 
 
 
