@@ -3,11 +3,11 @@
 
 class Node: 
     def __init__(self, value):  # We don't pass in a next value because each item may be the last and we don't know what might come next
-        self.value = value
-        self.next = None    
+        self.value = value      # Each node in a linked list has a value and a next 
+        self.next = None        # This points to the next node in the list
 
-    def get_value(self):
-        return self.value
+    def get_value(self):        # THIS GETS MADE LATER
+        return self.value       
 
 class LinkedList:
     def __init__(self):
@@ -39,13 +39,19 @@ class LinkedList:
 
     def add_to_head(self, value):
         new_node = Node(value)  #Created the new_node
+        # Edge case of if there is no list. It's easier to go through the the code to solve the majority of cases before we try to solve the edge cases
         if self.head is None:   #Just in case there isn't already a head, meaning the list is empty
-            self.head = new_node
-            self.tail = new_node
-            return
-        old_head = self.head    #This way, the old head doesn't disappear and we can link it to the new one
-        self.head = new_node    #Assigning the new_node to the head
-        self.head.next = old_head #Reassigning the old head to the next of the new one
+            self.head = new_node    # Reassign the pointers just like we did before
+            self.tail = new_node    # Reassign
+            return                  # End the function here
+        # Slight problem here, a difference compared to adding to tail. If we try to immediately reassign self.head or self.head.next, we lose whatever nodes that we originally there (unlike how self.tail.next was None, self.head has a value). How do we get around this problem? Remember, if a node doesn't have anything pointing at it, it basically no longer exists.
+        # In python, and possibly in computers/programming languages in general, once there is nothing pointing to a memory location, whatever data is at that location virtually ceases to exist and that location is seen as "empty", so the computer can fill it with new data.
+        old_head = self.head    # This way, the old head doesn't disappear and we can link it to the new one
+        self.head = new_node    # Assigning the new_node to the head
+        self.head.next = old_head # Reassigning the old head to the next of the new one
+
+    # For session purposes, pause here and define other necessary methods, but only fill out "pass" in them. Then run the test file with this:
+    # python -m singly_linked_list
 
     def remove_head(self):
         if self.head is None: #There's nothing to remove if the list is empty, which it is if head is empty
