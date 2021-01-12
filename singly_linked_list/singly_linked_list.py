@@ -59,17 +59,37 @@ class LinkedList:
         # We'll need to reassign self.head to self.head.next
         if self.head is None: # 3. There's nothing to remove if the list is empty, which it is if head is empty
             return  # 4
-        data = self.head.get_value() # 5. Write this AFTER writing the line below AND the edge case. The tests want us to return the value we are removing, we'll need to build the get value method into the node class. Show that to the group. This needs to be under the edge case, because we can't get the value on a none type. 
-        self.head = self.head.next  # 2. Reassign the head pointer to self.next.head, effectively wiping the old head from memory.
-        return data # 6
 
-    def remove_tail(self): # AN ERROW WILL GET RETURNED ON THE TESTS FOR THIS, we're pretty sure one of the tests in broken.
+        data = self.head.get_value() # 7. Write this AFTER writing the main and edge cases. The tests want us to return the value we are removing, we'll need to build the get value method into the node class. Show that to the group. This needs to be under the first edge case, because we can't get the value on a none type. 
+
+        # 5. Q: What if there is only one node in the list? A: Then we just set head and tail to None to effectively delete the list
+        if self.head.next is None:
+            self.head = None
+            self.tail = None
+            return data # 6
+
+        self.head = self.head.next  # 2. Reassign the head pointer to self.next.head, effectively wiping the old head from memory.
+        return data # 8
+
+    def remove_tail(self):
         # 1. Funky thing here, we don't have anything pointing to the node before the tail, so how do we find it?
         # 2. We'll need to create loop to find it. Which kind? A while loop.
+
+        # 13. Edge case: What if the list is empty? Then just end the function.
+        if self.head is None:
+            return
+
         data = self.tail.get_value() # 12. We still need to return the value of the removed tail for the tests, so let's grab it
         # 3. We also need a cursor/pointer to keep track of the node we're on
         cursor = self.head  # 4. Can also be pointer. Start at the head
         # 6. Using cursor.next.next so that when the next item of our next item is none (use diagram), we know that our item is the item before the tail
+
+        # 14. Edge case: What if the list is only one node long? Then we want to just effectively delete the whole list by resetting all pointers to None.
+        if self.head.next is None:
+            self.head = None
+            self.tail = None
+            return data
+
         while cursor.next.next is not None:   # 5. We don't know how long the list is, hence a while loop
             cursor = cursor.next    # 7. What do we do here if the cursor is not on the node we want (second to last)? Move the cursor to the next one. This loop will stop runnign once we reach the second to last node
         # 8. What do we do once we've reach the second to last node and exited the loop? What is our goal with our current node, our cursor?
