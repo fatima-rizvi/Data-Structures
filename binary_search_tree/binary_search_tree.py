@@ -1,3 +1,15 @@
+# import sys
+# sys.path.append('../singly_linked_list')
+# from singly_linked_list import LinkedList
+
+# import sys
+# sys.path.append('../queue')
+# from queue import Queue
+
+# import sys
+# sys.path.append('../stack')
+# from stack import Stack
+
 # A singly linked list is kind of shaped like a list, but nothing has an index list. It has a head, which has an attribute pointing to the next item in the list and so on until the end. You can only go forward in this list. Items do not know what came before it, only what comes directly after.
 #They're pretty fast at certain things
 
@@ -142,11 +154,6 @@ class BSTNode:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        # max_value = None # Can also set it to the first value in the tree, but None accounts for the tree being empty. Can also add that condition later
-        # if max_value < self.value:
-        #     max_value = self.value
-        # The stuff above will not work if we use recursion
-
         # Recursion version
         # max_value = self.value                  # Starting at the first value
         # if max_value is not None:               # If the value is not none, if the value is actually there
@@ -156,6 +163,11 @@ class BSTNode:
         #         return self.right.get_max()     # Recursion: Running the function again since we haven't found the max value
         # else:                                   # If there's nothing in the tree
         #     return None                         # Return None
+
+        # max_value = None # Can also set it to the first value in the tree, but None accounts for the tree being empty. Can also add that condition later
+        # if max_value < self.value:
+        #     max_value = self.value
+        # # The stuff above will not work if we use recursion
 
         # While loop version
         current_node = self                     # Create a variable called current_node and set it equal to self (the current node)

@@ -70,26 +70,26 @@ class Stack:
 # Side note: Alt and up and down arrows to move stuff up and down. Add ctrl to those steps to copy and paste
 # Also, shift + tab to un-tab
 
-#THIS IS HOW TO DO IT WITH A LINKED LIST (the one that we made)
+# THIS IS HOW TO DO IT WITH A LINKED LIST (the one that we made)
 # import the singly linked list
         
-# class Stack:
-#     def __init__(self): 
-#         self.size = 0 # Keeps track of the length. Note: You could do this in the linked list class too by adding this attribute to keep track of its length.
-#         self.storage = LinkedList() # 1. This time, we will create an instance of our linked list class
+class Stack:
+    def __init__(self): 
+        self.size = 0 # Keeps track of the length. Note: You could do this in the linked list class too by adding this attribute to keep track of its length.
+        self.storage = LinkedList() # 1. This time, we will create an instance of our linked list class
 
-#     def __len__(self): 
-#         return self.size    # 2. How will we track the length?
+    def __len__(self): 
+        return self.size    # 2. How will we track the length?
 
-#     def push(self, value):  # 5. Now let's work on this
-#         self.size += 1 # 3. We'll need to update self.size everytime we push or pop. Keep track of the length
-#         return self.storage.add_to_head(value) # 6. We've chosen to add/remove from the start to make our lives easier
-#         # We're returning it for testing purposes
+    def push(self, value):  # 5. Now let's work on this
+        self.size += 1 # 3. We'll need to update self.size everytime we push or pop. Keep track of the length
+        return self.storage.add_to_head(value) # 6. We've chosen to add/remove from the start to make our lives easier
+        # We're returning it for testing purposes
 
-#     def pop(self):  # 7. Now lets work on this. Q: How would we pop it?
-#         # 9. Edge case: What if the list is empty? What do we want to do and how?
-#         if self.size == 0:
-#             return  # We need to return here because 1) there's nothing to remove and 2) and size cannot be less than 0
-#         self.size -= 1 # 4. We'll need to update self.size everytime we push or pop. Keep track of the length
-#         return self.storage.remove_head()   # 8. Remove from head using the LinkedList methods
-#         # We're returning it for testing purposes
+    def pop(self):  # 7. Now lets work on this. Q: How would we pop it?
+        # 9. Edge case: What if the list is empty? What do we want to do and how?
+        if self.size == 0:
+            return  # We need to return here because 1) there's nothing to remove and 2) and size cannot be less than 0
+        self.size -= 1 # 4. We'll need to update self.size everytime we push or pop. Keep track of the length
+        return self.storage.remove_head()   # 8. Remove from head using the LinkedList methods
+        # We're returning it for testing purposes

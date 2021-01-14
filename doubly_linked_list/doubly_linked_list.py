@@ -18,7 +18,7 @@ class DoublyLinkedList:
     def __init__(self, node=None):
         self.head = node
         self.tail = node
-        self.length = 1 if node is not None else 0  # We could call length anything, it's just avariable that's been created
+        self.length = 1 if node is not None else 0  # We could call length anything, it's just a variable that's been created
 
     def __len__(self):
         return self.length

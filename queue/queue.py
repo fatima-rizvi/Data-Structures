@@ -42,3 +42,5 @@ class Queue:
         return self.storage.remove_head() # 7 
 
 # We're not going to do this with a regular list for time's sake, but you get the idea
+
+# Check out the deck imports for queses from collections

@@ -82,7 +82,6 @@ class LinkedList:
         data = self.tail.get_value() # 12. We still need to return the value of the removed tail for the tests, so let's grab it
         # 3. We also need a cursor/pointer to keep track of the node we're on
         cursor = self.head  # 4. Can also be pointer. Start at the head
-        # 6. Using cursor.next.next so that when the next item of our next item is none (use diagram), we know that our item is the item before the tail
 
         # 14. Edge case: What if the list is only one node long? Then we want to just effectively delete the whole list by resetting all pointers to None.
         if self.head.next is None:
@@ -90,7 +89,8 @@ class LinkedList:
             self.tail = None
             return data
 
-        while cursor.next.next is not None:   # 5. We don't know how long the list is, hence a while loop
+        # 5. We don't know how long the list is, hence a while loop
+        while cursor.next.next is not None:   # 6. Using cursor.next.next so that when the next item of our next item is none (use diagram), we know that our item is the item before the tail
             cursor = cursor.next    # 7. What do we do here if the cursor is not on the node we want (second to last)? Move the cursor to the next one. This loop will stop runnign once we reach the second to last node
         # 8. What do we do once we've reach the second to last node and exited the loop? What is our goal with our current node, our cursor?
         # 9. We want our current node to become the new tail, and we need to erase the old tail by getting rid of anything pointing to it. How?
