@@ -201,7 +201,7 @@ class DoublyLinkedList:
 
         while pointer is not None:
             if max_value < pointer.value:
-                max_value = pointer.value 
+                max_value = pointer.value   # Can compare letters, z > a, tuples, 
             
             pointer = pointer.next 
 
